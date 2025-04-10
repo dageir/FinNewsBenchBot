@@ -1,0 +1,7 @@
+.venv
+.idea
+.mypy_cache
+__pycache__
+venv
+*.db
+config.py
