@@ -58,6 +58,7 @@ def main_keyboard():
     )
     return keyboard
 
+
 def admin_keyboard():
     button = InlineKeyboardButton(text='Получить все записи в excel',
                                   callback_data='get_all_appeals')
@@ -70,6 +71,7 @@ def admin_keyboard():
         ]
     )
     return keyboard
+
 
 # Состояния
 class Form(StatesGroup):
@@ -84,12 +86,14 @@ async def command_start(message: Message, state: FSMContext) -> None:
         reply_markup=main_keyboard(),
     )
 
+
 @dp.message(Command('about'))
 async def command_about(message: Message, state: FSMContext):
     await state.clear()
     await message.answer(
         ABOUT_TEXT
     )
+
 
 @dp.message(Command('admin'))
 @check_admin
@@ -132,10 +136,12 @@ async def add_appeal(message: Message, state: FSMContext) -> None:
                         )
     await message.answer(NEXT_MESSAGE)
 
+
 @dp.message()
 async def null_state(message: Message, state: FSMContext) -> None:
     await state.clear()
     await message.answer(NULL_STATE)
+
 
 async def main():
     logging.basicConfig(level=logging.INFO, stream=sys.stdout)
